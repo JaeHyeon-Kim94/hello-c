@@ -24,9 +24,10 @@ int main()
 
     //다음 예제를 이해해보도록 한다.
     for(int (*pi)[4] = &arr[0]; pi < arr+3; pi++){
-        for(int (*pj)=&arr[0][0]; pj < arr[0]+4; pj++){
-            
+        for(int (*pj)=*pi; pj < *pi+4; pj++){
+            printf("%4d", *pj);
         }
+        printf("\n");
     }
 
 }

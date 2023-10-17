@@ -1,26 +1,37 @@
 #include <iostream>
-
+//포인터 배열
 int main()
 {
-    std::cout << "=================================" << std::endl;
-    std::cout << "배열 포인터(배열을 가리키는 포인터)"<< std::endl;
-    std::cout << "=================================" << std::endl;
-
-    int arr[3] = {1, 2, 3};
-    
-    int (*p_arr)[3];
-    p_arr = &arr;
-
-    for(int i=0; i<3; i++){
-        std::cout << (*p_arr)[i] << std::endl;
-    }
-
-    std::cout << "=================================" << std::endl;
-    std::cout << " > 포인터는 같은 자료형의 데이터만 가리킬 수 있듯이, 배열 포인터도 일치하는 자료형의 배열만을 가리킬 수 있다."<< std::endl;
-    std::cout << "=================================" << std::endl;
+    int *ptr[3]; //포인터 배열은 배열 포인터에서 소괄호만 빠진 형태이다.
+                //int를 가리키는 세 개의 포인터가 담긴 배열이다.
 
     int a = 5;
-    // int *p1 = &arr;      /** 에러. ==> int (*p1)[3] = &arr; */
-    // int (*p2)[3] = &a    /** 에러. ==> int *p2 = &a; */
-    // int (*p3)[4] = &arr  /** 에러. 3칸짜리 배열을 4칸짜리 배열 포인터에 담을 수 없다. */
+    ptr[0] = &a;
+
+    std::cout << "*ptr[0] : " << *ptr[0] << std::endl;
+
+    // (*ptr)[0]과 *ptr[0]의 차이를 잘 인지하도록 한다.
+    // (*ptr)[0]은 배열 포인터로서, ptr이 가리키는 배열의 0번째 칸을 의미하고,
+    // *ptr[0]은 포인터 배열로서, ptr[0]이 가리키는 대상을 의미한다.
+
+    char str[4][10] = { "hello", "world", "doodle", "google"};
+
+    //배열 포인터로 출력하기.
+    for(char (*pi)[10] = str; pi < str + 4; *pi++){
+        for( char (*pj)=*pi; pj < *pi+10; pj++){
+            printf("%c", *pj);
+        }
+        printf("\n");
+    }
+
+    //포인터 배열로 출력하기
+    char *ptr_str[4];
+
+    for(int i=0; i<4; i++){
+        ptr_str[i] = str[i];
+    }
+
+    for(int i=0; i<4; i++){
+        printf("%s\n", ptr_str[i]);
+    }
 }
