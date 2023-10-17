@@ -1,5 +1,5 @@
 #include <iostream>
-
+//포인터와 배열
 int main()
 {
 
